@@ -43,9 +43,11 @@ class CircularScreen:
     def show(self,text,fonts):
 #    tft.blit_buffer(triangle.BITMAP,0,0,240,240)
         self.tft.fill(blue)
-        print("paint blue")
+#        print("paint blue")
         for font in fonts:
             layout=self.layout_text_circular(text,font.WIDTH+1,font.HEIGHT+1)
+            if layout is None:
+                continue
             for line in layout:
                 print(line)
                 self.tft.text(font,line[2],
@@ -53,6 +55,7 @@ class CircularScreen:
                     line[1],
                     gc9a01.WHITE,blue
                 )
+            return
         
     
     def layout_text_circular(self,
@@ -111,7 +114,7 @@ class CircularScreen:
             if word_index >= len(words):
                 break
 
-        return lines
+        return lines if word_index >= len(words) else None
 
 
 

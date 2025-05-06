@@ -20,7 +20,7 @@ Schizophrenia
 Schizoaffective Disorder
 Substance/Medication-Induced Psychotic Disorder
 Psychotic Disorder Due to Another Medical Condition
-Catatonia Associated With Another Mental Disorder (Catatonia Specifier)
+[Specifier]Catatonia
 Catatonic Disorder Due to Another Medical Condition
 Unspecified Catatonia
 Bipolar I Disorder
@@ -39,7 +39,7 @@ Selective Mutism
 Specific Phobia
 Social Anxiety Disorder (Social Phobia)
 Panic Disorder
-	Panic Attack (Specifier)
+[Specifier]Panic Attack
 Agoraphobia
 Generalized Anxiety Disorder
 Substance/Medication-Induced Anxiety Disorder
@@ -102,46 +102,36 @@ Conduct Disorder
 Antisocial Personality Disorder
 Pyromania
 Kleptomania
-Alcohol Use Disorder
-Alcohol Intoxication
-Alcohol Withdrawal
-Caffeine Intoxication
-Caffeine Withdrawal
-Cannabis Use Disorder
-Cannabis Intoxication
-Cannabis Withdrawal
-Phencyclidine Use Disorder
-Phencyclidine Intoxication
+{aod.sub+}Use Disorder
+{aod.sub}Intoxication
+{aod.sub}Withdrawal
+[aod.sub]Alcohol
+[aod.sub]Caffeine
+[aod.sub]Cannabis
+[aod.sub]Phencyclidine
+[aod.sub]Inhalant
+[aod.sub]Opioid
+[aod.sub]Sedative, Hypnotic, or Anxiolytic
+[aod.sub]Stimulant
+[aod.sub]Tobacco
 Hallucinogen Persisting Perception Disorder
-Inhalant Use Disorder
-Inhalant Intoxication
-Opioid Use Disorder
-Opioid Intoxication
-Opioid Withdrawal
-Sedative, Hypnotic, or Anxiolytic Use Disorder
-Sedative, Hypnotic, or Anxiolytic Intoxication
-Sedative, Hypnotic, or Anxiolytic Withdrawal
-Stimulant Use Disorder
-Stimulant Intoxication
-Stimulant Withdrawal
-Tobacco Use Disorder
-Tobacco Withdrawal
 Gambling Disorder
 Delirium
-Major Neurocognitive Disorder
-Mild Neurocognitive Disorder
-Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease
-Major or Mild Frontotemporal Neurocognitive Disorder
-Major or Mild Neurocognitive Disorder With Lewy Bodies
-Major or Mild Vascular Neurocognitive Disorder
-Major or Mild Neurocognitive Disorder Due to Traumatic Brain Injury
-Substance/Medication-Induced Major or Mild Neurocognitive Disorder
-Major or Mild Neurocognitive Disorder Due to HIV Infection
-Major or Mild Neurocognitive Disorder Due to Prion Disease
-Major or Mild Neurocognitive Disorder Due to Parkinson’s Disease
-Major or Mild Neurocognitive Disorder Due to Huntington’s Disease
-Major or Mild Neurocognitive Disorder Due to Another Medical Condition
-Major or Mild Neurocognitive Disorder Due to Multiple Etiologies
+{nd.ind}{nd.sev+}{nd.loc}Neurocognitive Disorder{nd.due}
+[nd.sev]Mild
+[nd.sev]Major
+[nd.due]Due to Alzheimer’s Disease
+[nd.due]With Lewy Bodies
+[nd.due]Due to Traumatic Brain Injury
+[nd.due]Due to HIV Infection
+[nd.due]Due to Prion Disease
+[nd.due]Due to Parkinson’s Disease
+[nd.due]Due to Huntington’s Disease
+[nd.due]Due to Another Medical Condition
+[nd.due]Due to Multiple Etiologies
+[nd.loc]Frontotemporal
+[nd.loc]Vascular
+[nd.ind]Substance/Medication-Induced
 General Personality Disorder
 Paranoid Personality Disorder
 Schizoid Personality Disorder

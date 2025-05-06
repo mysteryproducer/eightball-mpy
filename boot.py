@@ -9,7 +9,7 @@ import random, time, math
 import settings as cfg
 from machine import Pin, SPI, I2C
 from imu import MPU6050, MPUException
-from gen import create_generator
+from factory import create_generator
 from circular_screen import CircularScreen
 #import bno08x_i2c as bno08x
 
@@ -27,7 +27,7 @@ i2c=None
 
 def show():
     text=generator.generate()
-    screen.show(text,[font_lrg])
+    screen.show(text,[font_lrg,font_sml])
 
 def init_MPU():
     global mpu6050, i2c
