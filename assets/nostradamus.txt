@@ -1,4 +1,23 @@
-When the litters are overturned by the whirlwind
-and faces are covered by cloaks,
-the new republic will be troubled by its people.
-At this time the reds and the whites will rule wrongly. 
+#When the litters are overturned by the whirlwind
+#and faces are covered by cloaks,
+#the new republic will be troubled by its people.
+#At this time the reds and the whites will rule wrongly. 
+
+{when}{subject+}will{pred+}.
+
+[when]When the {when.event+},
+[and]and {when+}
+[when.event]{subject}{pred+}
+[subject]faces
+[subject]litters
+[pred]are {verb+} by {object+}
+[pred]rule wrongly
+[object]cloaks
+[object]the whirlwind
+[object]its people
+[verb]overturned
+[verb]covered
+[verb]troubled 
+
+[subject]the new republic
+[event]be {pred} by {object}
