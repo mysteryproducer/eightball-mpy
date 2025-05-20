@@ -1,5 +1,5 @@
 import settings as cfg
-from machine import Pin, SPI, I2C
+from machine import Pin, SPI
 import gc9a01py as gc9a01
 import math
 
@@ -7,12 +7,6 @@ import math
 blue=gc9a01.color565(47,32,245)
 
 class CircularScreen:
-    spi=None
-    tft=None
-    dc=None
-    cs=None
-    reset=None
-    power_pin=None
     
     def __init__(self,sck=None,mosi=None,dc=None,cs=None,reset=None,power=None,baudrate=None):
         baudrate=baudrate if baudrate is not None else cfg.SPI_CLOCK

@@ -2,6 +2,8 @@
 #from abc import abstractmethod,ABCMeta
 import random
 
+punctuation="!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ "
+
 class Generator():
 #    @abstractmethod
     def generate():
@@ -46,14 +48,21 @@ class TemplateGenerator(Generator):
             key=value[ob_ix+1:cb_ix]
             repl=self.get_sub(key)
             if repl!='':
+                #
                 if (ob_ix>0 and value[ob_ix-1]!=' '):
                     repl=' '+repl
-                repl=repl+' '
+                if cb_ix<(len(value)-1) and not ((value[cb_ix]==' ') or value[cb_ix] in punctuation):
+                    repl=repl+' '
             value=value.replace('{'+key+'}',repl)
             ob_ix=value.find('{')
         return value
 
     def get_sub(self,key):
+        #if the key is a selection (pipe-separated), pick one at random
+        keys=key.split('|')
+        key_index=int(random.random() * len(keys))
+        key=keys[key_index]
+        #can we go without?
         zero_chance=self._zero_chance
         if key.endswith('+'):
             key=key[0:-1]

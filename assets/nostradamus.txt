@@ -3,21 +3,88 @@
 #the new republic will be troubled by its people.
 #At this time the reds and the whites will rule wrongly. 
 
-{when}{subject+}will{pred+}.
+#In the world there will be made a king
+#who will have little peace and a short life.
+#At this time the ship of the Papacy will be lost,
+#governed to its greatest detriment. 
 
-[when]When the {when.event+},
+#The eye of Ravenna will be forsaken,
+#when his wings will fail at his feet.
+#The two of Bresse will have made a constitution
+#for Turin and Vercelli, which the French will trample underfoot 
+
+{when|nil}{subject+}{pred+}.
+How often will you be {verb+}, {subject+}?
+{subject+} and {subject+} shall be {verb+}. 
+{adj+} times {v.prog+} you. No longer will you be {verb+}.
+
+[nil]
+[when]At this time
+[when]when the {when.event+},
 [and]and {when+}
-[when.event]{subject}{pred+}
-[subject]faces
-[subject]litters
-[pred]are {verb+} by {object+}
-[pred]rule wrongly
-[object]cloaks
-[object]the whirlwind
-[object]its people
+[when.event]{when.event.s|when.event.pl+}
+[when.event.s]{subject.s+}{pred.c.s+}
+[when.event.pl]{subject.pl+}{pred.c.pl+}
+
+[subject]the world
+[subject]the French
+[subject]the new republic
+[subject]Rousseau
+[subject]Great Hadrie
+[subject]Turin and Vercelli
+[subject]a new king{nil|subject.attribs}
+[subject]{subject.s|subject.pl+}
+[subject]the ship of the Papacy
+[subject]the eye of Ravenna
+[subject]the two of Bresse
+[subject]temples of Malta
+[subject]nearby islands
+[subject]the reds and whites
+[subject]the tripod's legs
+
+[subject.s]face
+[subject.s]litter
+[subject.pl]faces
+[subject.pl]litters
+
+[pred]will rule wrongly
+[pred]will be {pred.s+}
+[pred]will be {verb+}
+[pred]will have {verb+}
+[pred]will 
+[pred]{pred.s|pred.pl+}
+[pred.c.s]is {pred.s+}
+[pred.c.pl]are {pred.pl+}
+[pred.s]{verb+} by {object+}
+[pred.pl]{verb+} by {object+}
+[object]{object.s|object.pl}
+[object.pl]cloaks
+[object.s]whirlwind
+[object.pl]its people
+[object.s]the world
+[object.s]O city of the sun
+[object.s]your veins
+
 [verb]overturned
 [verb]covered
-[verb]troubled 
+[verb]troubled
+[verb]lost
+[verb]governed
+[verb]forsaken
+[verb]trampled underfoot
+[verb]captured
+[verb]deserted
+[verb]intercepted
 
-[subject]the new republic
 [event]be {pred} by {object}
+[subject.attribs]who will have{subj.attr.top+}
+[subj.attr.top]{subj.attr+}{subj.attr.and|nil|nil}
+[subj.attr.and]and {subj.attr.top+}
+[subj.attr]a short life
+[subj.attr]little joy
+
+[adj]bad
+[adj]barbaric
+[adj]vain
+
+[v.prog]approach
