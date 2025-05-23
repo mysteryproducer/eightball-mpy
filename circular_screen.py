@@ -43,7 +43,6 @@ class CircularScreen:
             if layout is None:
                 continue
             for line in layout:
-                print(line)
                 self.tft.text(font,line[2],
                     line[0],
                     line[1],
