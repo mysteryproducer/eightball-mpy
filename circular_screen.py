@@ -1,6 +1,6 @@
 import settings as cfg
 from machine import Pin, SPI
-import gc9a01py as gc9a01
+import lib.gc9a01py as gc9a01
 import math
 
 #constants
@@ -20,8 +20,8 @@ class CircularScreen:
         self.spi = SPI(1, baudrate=baudrate, sck=sck, mosi=mosi)
         print(self.spi)
         
-    def stop(self):
-        self.power_pin.value(0)
+    def set_idle(self,idle):
+        self.power_pin.value(0 if idle else 1)
         
     def init_screen(self):
         self.power_pin.value(1)

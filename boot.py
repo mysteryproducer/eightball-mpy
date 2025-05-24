@@ -5,11 +5,9 @@
 #webrepl.start()
 
 #pre-loaded code above. 8 ball with gc9a01 and mpu6050 below
-import random, time, math
 import settings as cfg
-from machine import Pin, SPI, I2C, Timer
+from machine import Timer
 from accelerometer import Accelerometer
-from imu import MPU6050, MPUException
 from factory import create_generator
 from circular_screen import CircularScreen
 
@@ -18,19 +16,20 @@ from fonts import vga2_16x32 as font_lrg
 from fonts import vga2_8x16 as font_sml
 
 def show(screen,generator,vector=None):
-    print(vector)
+    #print(vector)
     text=generator.generate()
     screen.show(text,[font_lrg,font_sml])
 
 def main():
-    mpu6050=Accelerometer(lambda source,vector:show(screen,generator,vector))
     generator=create_generator(cfg.GENERATOR)
+    screen=CircularScreen()
+    screen.init_screen()
+    mpu6050=Accelerometer(callback=lambda source,vector:show(screen,generator,vector),
+                          sleep_callback=lambda source,idle_state:screen.set_idle(idle_state))
     accelerometer_timer=Timer(0)
     accelerometer_timer.init(period=250,mode=Timer.PERIODIC,
                              callback=lambda t:mpu6050.pulse())
     
-    screen=CircularScreen()
-    screen.init_screen()
     show(screen,generator)
 
 main()
