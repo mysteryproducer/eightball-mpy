@@ -16,15 +16,16 @@ class CircularScreen:
         self.cs=cs if cs is not None else cfg.SCR_CS
         self.reset=reset if reset is not None else cfg.SCR_RESET
         self.power_pin=power if power is not None else cfg.SCR_POW
-        
+
         self.spi = SPI(1, baudrate=baudrate, sck=sck, mosi=mosi)
         print(self.spi)
         
     def set_idle(self,idle):
-        self.power_pin.value(0 if idle else 1)
+        print("Idle transition: " + str(idle))
+        Pin(self.power_pin,Pin.OUT).value(0 if idle else 1)
         
     def init_screen(self):
-        self.power_pin.value(1)
+        Pin(self.power_pin,Pin.OUT).value(1)
         self.tft = gc9a01.GC9A01(
             self.spi,
             dc=self.dc,
@@ -108,7 +109,3 @@ class CircularScreen:
                 break
 
         return lines if word_index >= len(words) else None
-
-
-
-

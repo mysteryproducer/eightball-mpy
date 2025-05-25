@@ -3,6 +3,9 @@ from machine import I2C
 from lib.imu import MPU6050, MPUException
 import time
 
+def noop(src,arg1=None,arg2=None):
+    pass
+
 class Accelerometer:
     '''
 		The state machine goes:
@@ -28,12 +31,13 @@ class Accelerometer:
     UPRIGHT=SLEEP | TRIG
     AWAKE  =TRIG | INV
     
-    def __init__(self,callback=None,sleep_callback=None):
+    def __init__(self,trig_cb=noop,idle_cb=noop,invert_cb=noop):
         self._i2c=None
         self._mpu6050=None
         self._invert_time=False
-        self._callback=callback
-        self._idle_callback=sleep_callback
+        self._callback=trig_cb
+        self._idle_callback=idle_cb
+        self._invert_callback=invert_cb
         self._state=Accelerometer.INIT
         self._initialise()
         
@@ -50,7 +54,7 @@ class Accelerometer:
         
     def _is_inverted(self,vector):
         #TODO: add a better implementation? Something with a reference vector
-        return vector.ixyz[2] < cfg.INVERT_IZ
+        return cfg.invert_predicate(vector.ixyz) #vector.ixyz[2] < cfg.INVERT_IZ
     
     def pulse(self):
         try:
@@ -59,13 +63,14 @@ class Accelerometer:
                     return
             
             vector=self._mpu6050.accel
+            g_force=vector.magnitude
             #            print("ixyz " + str(vector.ixyz))
             #            print("xyz " + str(vector.xyz))
             #            print("aia " + str((vector.elevation,vector.inclination,vector.azimuth)))
-            if vector.magnitude>cfg.TRIGGER_GS:
+            if g_force>cfg.TRIGGER_GS:
                 #vector magnitude translates to G load, more or less. if > configured:
 #                print("shake: " + str(vector.magnitude))
-                self._shake(vector.xyz)
+                self._shake(vector.xyz,g_force)
             inverted=self._is_inverted(vector)
             #set inversion state now. the next sequence can bail:
             if inverted:
@@ -91,27 +96,43 @@ class Accelerometer:
             elif (self._invert_time is not None):
                 #not inverted and timer is on means object is righted. fire trigger:
                 self._invert_time=None
-                self._shake(vector.xyz)
+                self._shake(vector.xyz,g_force)
 
         except MPUException as mpue:
             print(str(mpue))
             self._mpu6050=None
             
-    def _shake(self,vector):
-        self._shaken=True
-        if self._callback is not None:
-            self._callback(self,vector)
+    def _shake(self,vector,g_force):
+        self._state|=Accelerometer.TRIG
+        try:
+            self._callback(self,vector,g_force)
+        except Exception as ex:
+            print(str(ex))
             
     def _invoke_idle_cb(self,is_idle):
         if is_idle:
             self._state |= Accelerometer.SLEEP
         else:
             self._state &= Accelerometer.AWAKE
-        if self._idle_callback is not None:
+        try:
+            self._idle_callback(self,is_idle)
+        except Exception as ex:
+            print(str(ex))
+    
+    def _set_inverted(self,is_inverted):
+        if is_inverted!=self.inverted: 
+            if is_inverted:
+                self._state |= Accelerometer.INV
+            else:
+                self._state &= Accelerometer.UPRIGHT
             try:
-                self._idle_callback(self,is_idle)
+                self._invert_callback(self,is_inverted)
             except Exception as ex:
                 print(str(ex))
+
+    @property
+    def vector(self):
+        return self._mpu6050.accel
 
     def read_and_reset_shaken(self):
         temp=self.shaken

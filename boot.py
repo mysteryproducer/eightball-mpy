@@ -6,7 +6,8 @@
 
 #pre-loaded code above. 8 ball with gc9a01 and mpu6050 below
 import settings as cfg
-from machine import Timer
+from time import sleep
+from machine import Timer, Pin
 from accelerometer import Accelerometer
 from factory import create_generator
 from circular_screen import CircularScreen
@@ -15,8 +16,7 @@ from circular_screen import CircularScreen
 from fonts import vga2_16x32 as font_lrg
 from fonts import vga2_8x16 as font_sml
 
-def show(screen,generator,vector=None):
-    #print(vector)
+def show(screen,generator,vector=None,g_load=None):
     text=generator.generate()
     screen.show(text,[font_lrg,font_sml])
 
@@ -24,14 +24,18 @@ def main():
     generator=create_generator(cfg.GENERATOR)
     screen=CircularScreen()
     screen.init_screen()
-    mpu6050=Accelerometer(callback=lambda source,vector:show(screen,generator,vector),
-                          sleep_callback=lambda source,idle_state:screen.set_idle(idle_state))
+    mpu6050=Accelerometer(trig_cb=lambda src,v,gs:show(screen,generator,v,gs),
+                          idle_cb=lambda src,idle:screen.set_idle(idle),
+                          invert_cb=lambda src,inv:print(inv))
     accelerometer_timer=Timer(0)
     accelerometer_timer.init(period=250,mode=Timer.PERIODIC,
                              callback=lambda t:mpu6050.pulse())
     
     show(screen,generator)
+    return (generator,screen,mpu6050,accelerometer_timer)
 
-main()
+all_state=main()
 
-
+#test_timer=Timer(1)
+#test_timer.init(period=2000,mode=Timer.PERIODIC,
+#                             callback=lambda t:print(all_state[2].vector.ixyz))
