@@ -51,26 +51,19 @@ class TemplateGenerator(Generator):
                 #
                 if (ob_ix>0 and value[ob_ix-1]!=' '):
                     repl=' '+repl
-                if cb_ix<(len(value)-1) and not ((value[cb_ix]==' ') or value[cb_ix] in punctuation):
+                if cb_ix<(len(value)-1) and not ((value[cb_ix+1]==' ') or value[cb_ix+1] in punctuation):
                     repl=repl+' '
-            value=value.replace('{'+key+'}',repl)
+            value=value.replace('{'+key+'}',repl,1)
             ob_ix=value.find('{')
         return value
 
     def get_sub(self,key):
         #if the key is a selection (pipe-separated), pick one at random
         keys=key.split('|')
-        key_index=int(random.random() * len(keys))
-        key=keys[key_index]
-        #can we go without?
-        zero_chance=self._zero_chance
-        if key.endswith('+'):
-            key=key[0:-1]
-            zero_chance=0
-        choice=random.random()
-        sub=''
-        if (choice > zero_chance):
-            choice=(choice-zero_chance)/(1-zero_chance)
-            choices=self._subs[key]
-            sub=choices[int(choice*len(choices))]
-        return sub
+        if (len(keys)>1):
+            key=keys[random.randrange(len(keys))]
+        choices=self._subs[key]
+        ix=random.randrange(len(choices))
+#        print(str(ix)+","+str(len(choices)))
+        choice=choices[random.randrange(len(choices))]
+        return choice

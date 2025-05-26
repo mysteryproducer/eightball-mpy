@@ -1,3 +1,30 @@
+[nil]
+[Specifier]Catatonia
+[Specifier]Panic Attack
+[aod.sub]Alcohol
+[aod.sub]Caffeine
+[aod.sub]Cannabis
+[aod.sub]Phencyclidine
+[aod.sub]Inhalant
+[aod.sub]Opioid
+[aod.sub]Sedative, Hypnotic, or Anxiolytic
+[aod.sub]Stimulant
+[aod.sub]Tobacco
+[nd.sev]Mild
+[nd.sev]Major
+[nd.due]Due to Alzheimer’s Disease
+[nd.due]With Lewy Bodies
+[nd.due]Due to Traumatic Brain Injury
+[nd.due]Due to HIV Infection
+[nd.due]Due to Prion Disease
+[nd.due]Due to Parkinson’s Disease
+[nd.due]Due to Huntington’s Disease
+[nd.due]Due to Another Medical Condition
+[nd.due]Due to Multiple Etiologies
+[nd.loc]Frontotemporal
+[nd.loc]Vascular
+[nd.ind]Substance/Medication-Induced
+
 Intellectual Developmental Disorder
 Global Developmental Delay
 Language Disorder
@@ -20,7 +47,6 @@ Schizophrenia
 Schizoaffective Disorder
 Substance/Medication-Induced Psychotic Disorder
 Psychotic Disorder Due to Another Medical Condition
-[Specifier]Catatonia
 Catatonic Disorder Due to Another Medical Condition
 Unspecified Catatonia
 Bipolar I Disorder
@@ -39,7 +65,6 @@ Selective Mutism
 Specific Phobia
 Social Anxiety Disorder (Social Phobia)
 Panic Disorder
-[Specifier]Panic Attack
 Agoraphobia
 Generalized Anxiety Disorder
 Substance/Medication-Induced Anxiety Disorder
@@ -105,33 +130,10 @@ Kleptomania
 {aod.sub+}Use Disorder
 {aod.sub}Intoxication
 {aod.sub}Withdrawal
-[aod.sub]Alcohol
-[aod.sub]Caffeine
-[aod.sub]Cannabis
-[aod.sub]Phencyclidine
-[aod.sub]Inhalant
-[aod.sub]Opioid
-[aod.sub]Sedative, Hypnotic, or Anxiolytic
-[aod.sub]Stimulant
-[aod.sub]Tobacco
 Hallucinogen Persisting Perception Disorder
 Gambling Disorder
 Delirium
-{nd.ind}{nd.sev+}{nd.loc}Neurocognitive Disorder{nd.due}
-[nd.sev]Mild
-[nd.sev]Major
-[nd.due]Due to Alzheimer’s Disease
-[nd.due]With Lewy Bodies
-[nd.due]Due to Traumatic Brain Injury
-[nd.due]Due to HIV Infection
-[nd.due]Due to Prion Disease
-[nd.due]Due to Parkinson’s Disease
-[nd.due]Due to Huntington’s Disease
-[nd.due]Due to Another Medical Condition
-[nd.due]Due to Multiple Etiologies
-[nd.loc]Frontotemporal
-[nd.loc]Vascular
-[nd.ind]Substance/Medication-Induced
+{nd.ind|nil}{nd.sev}{nd.loc|nil}Neurocognitive Disorder{nd.due|nil}
 General Personality Disorder
 Paranoid Personality Disorder
 Schizoid Personality Disorder
