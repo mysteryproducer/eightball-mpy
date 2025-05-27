@@ -1,6 +1,6 @@
 import settings as cfg
 from machine import Pin, SPI
-import lib.gc9a01py as gc9a01
+import hardware.gc9a01py as gc9a01
 import math
 
 #constants
