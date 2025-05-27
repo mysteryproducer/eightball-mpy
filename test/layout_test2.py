@@ -1,6 +1,6 @@
 import math
-import dsm5
-import nostradamus
+import src.dsm5
+import src.nostradamus
 
 too_big="Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease"
 too_big="Genito-Pelvic Pain/Penetration Disorder"

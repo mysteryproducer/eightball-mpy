@@ -8,4 +8,5 @@ micropython solution for a digital magic 8 ball.
 *  18650 charger board with overload protection
 *  USB-C female port
 *  2x USB-C male connectors (optional, but these help to make the assembly modular)
+*  some wire (I use 4 colours)
 *  1 magic 8-ball, de-seeded
