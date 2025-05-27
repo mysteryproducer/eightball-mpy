@@ -1,3 +1,5 @@
+#Source: https://www.globalgreyebooks.com/online-ebooks/nostradamus_prophecies_complete-text.html
+
 {when|nil}{subject}{pred}.
 How often will you be {verb.pt}, {subject}?
 {subject} and {subject} shall be {verb.pt}. 
@@ -32,8 +34,9 @@ Weep {place}, weep {place} and {place}.
 [subject]Castor and Pollux
 [subject]the Shaven Ones
 [subject]the King of Babylon
-[subject]O city of the sun
-[subject]O vast Rome
+[subject]{apos}
+[apos]O city of the sun
+[apos]O vast Rome
 
 [subject.s]face
 [subject.s]litter

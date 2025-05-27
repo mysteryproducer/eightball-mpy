@@ -127,7 +127,7 @@ Conduct Disorder
 Antisocial Personality Disorder
 Pyromania
 Kleptomania
-{aod.sub+}Use Disorder
+{aod.sub}Use Disorder
 {aod.sub}Intoxication
 {aod.sub}Withdrawal
 Hallucinogen Persisting Perception Disorder

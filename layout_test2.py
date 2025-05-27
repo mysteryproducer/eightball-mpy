@@ -4,6 +4,7 @@ import nostradamus
 
 too_big="Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease"
 too_big="Genito-Pelvic Pain/Penetration Disorder"
+too_big="Substance/Medication-Induced Bipolar and Related Disorder"
 
 def layout_text_circular(
     text,
@@ -63,13 +64,13 @@ def layout_text_circular(
     #return None if the text didn't fit.
     return lines if word_index >= len(words) else None
 
-#layout=layout_text_circular(too_big,17,33)
-#print(layout)
+layout=layout_text_circular(too_big,17,33)
+print(layout)
 
 #gen=dsm5.DSM5Generator()
 #for i in range(100):
 #    print(gen.generate())
 
-g2=nostradamus.Nostradamus()
-for i in range(100):
-    print(g2.generate())
+#g2=nostradamus.Nostradamus()
+#for i in range(100):
+#    print(g2.generate())

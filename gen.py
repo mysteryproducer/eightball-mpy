@@ -14,8 +14,8 @@ class TemplateGenerator(Generator):
     def __init__(self,filename,zero_chance=.2):
         with open(filename) as file:
             self._conditions=file.readlines()
-        self._conditions=filter(lambda s:((len(s.strip())>0) and not s.startswith('#')),self._conditions)
         self._conditions=map(lambda s:s.strip(),self._conditions)
+        self._conditions=filter(lambda s:((len(s)>0) and not s.startswith('#')),self._conditions)
         self._conditions=list(self._conditions)
         self._subs=dict()
         self._zero_chance=zero_chance
