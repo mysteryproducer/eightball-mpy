@@ -1,5 +1,4 @@
-from dsm5 import DSM5Generator
-from nostradamus import Nostradamus
+from template_generators import DSM5Generator, Nostradamus
 
 def create_generator(type):
     if type=="dsm5":
