@@ -14,7 +14,7 @@ SPI_CLOCK=40000000
 # This is the switch pin for the screen.
 SCR_POW=6
 
-GENERATOR="nostradamus"
+GENERATOR="dsm5"
 # MPU6050 outputs in Gs, so magnitude will be ~ 1 when still.
 # Shaking will record a higher G load
 TRIGGER_GS=1.3

@@ -1,6 +1,6 @@
 import settings as cfg
 from machine import I2C
-from hardware.imu import MPU6050, MPUException
+from lib.imu import MPU6050, MPUException
 import time
 
 def noop(src,arg1=None,arg2=None):

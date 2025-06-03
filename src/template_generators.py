@@ -9,9 +9,9 @@ class TemplateGenerator(Generator):
         temp=None
         with open(filename) as file:
             temp=file.readlines()
-        temp=map(lambda s:s.strip(),self._conditions)
-        temp=filter(lambda s:((len(s)>0) and not s.startswith('#')),self._conditions)
-        temp=list(temp)
+        temp=map(lambda s:s.strip(),temp)
+        temp=filter(lambda s:((len(s)>0) and not s.startswith('#')),temp)
+        self._conditions=list(temp)
         self._subs=dict()
         self.prepare_subs()
         self._maxindex=len(self._conditions)-1
@@ -64,10 +64,11 @@ class TemplateGenerator(Generator):
 
 class Nostradamus(TemplateGenerator):
     
-    def __init__(self):
-        super().__init__('assets/nostradamus.txt')
+    def __init__(self,path='assets/nostradamus.txt'):
+        super().__init__(path)
 
 class DSM5Generator(TemplateGenerator):
 
-    def __init__(self):
-        super().__init__('assets/dsm5.txt',zero_chance)
+    def __init__(self,path='assets/dsm5.txt'):
+        super().__init__(path)
+

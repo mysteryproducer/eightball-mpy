@@ -1,6 +1,6 @@
 import settings as cfg
 from machine import Pin, SPI
-import hardware.gc9a01py as gc9a01
+import lib.gc9a01py as gc9a01
 import math
 
 #constants
@@ -40,7 +40,7 @@ class CircularScreen:
         self.tft.fill(blue)
 #        print("paint blue")
         for font in fonts:
-            layout=self.layout_text_circular(text,font.WIDTH+1,font.HEIGHT+1)
+            layout=self.layout_text_circular(text,font.WIDTH,font.HEIGHT)
             if layout is None:
                 continue
             for line in layout:

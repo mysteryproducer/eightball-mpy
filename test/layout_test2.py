@@ -1,6 +1,16 @@
 import math
-import src.dsm5
-import src.nostradamus
+import importlib.util
+import sys
+spec=importlib.util.spec_from_file_location("gen", "src/gen.py")
+gen=importlib.util.module_from_spec(spec)
+sys.modules["gen"] = gen
+spec.loader.exec_module(gen)
+spec=importlib.util.spec_from_file_location("template_generators", "src/template_generators.py")
+template_generators=importlib.util.module_from_spec(spec)
+sys.modules["template_generators"] = template_generators
+spec.loader.exec_module(template_generators)
+#from src.template_generators import dsm5
+#from src.template_generators import nostradamus
 
 too_big="Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease"
 too_big="Genito-Pelvic Pain/Penetration Disorder"
@@ -62,7 +72,9 @@ def layout_text_circular(
         if word_index >= len(words):
             break
     #return None if the text didn't fit.
-    return lines if word_index >= len(words) else None
+    if word_index < len(words): 
+        return None
+    return lines
 
 layout=layout_text_circular(too_big,17,33)
 print(layout)
@@ -71,6 +83,6 @@ print(layout)
 #for i in range(100):
 #    print(gen.generate())
 
-#g2=nostradamus.Nostradamus()
-#for i in range(100):
-#    print(g2.generate())
+g2=template_generators.Nostradamus(path="src/assets/nostradamus.txt")
+for i in range(100):
+    print(g2.generate())
