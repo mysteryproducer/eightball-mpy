@@ -14,8 +14,8 @@ from circular_screen import CircularScreen
 
 # Choose a font
 from fonts import monaco28 as font_lrg
-#from fonts import vga2_16x32 as font_lrg
-from fonts import vga2_8x16 as font_sml
+from fonts import monaco20 as font_med
+from fonts import monaco14 as font_sml
 
 last_gen=None
 
@@ -24,7 +24,7 @@ def show(screen,generator,vector=None,g_load=None):
     this_loop=time.ticks_ms()
     if (last_gen is None) or (time.ticks_diff(this_loop,last_gen)>cfg.TRIGGER_COOLDOWN):
         text=generator.generate()
-        screen.show(text,[font_lrg,font_sml])
+        screen.show(text,[font_lrg,font_med,font_sml])
         last_gen=time.ticks_ms()
 
 def main():

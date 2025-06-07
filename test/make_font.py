@@ -1,9 +1,10 @@
 from PIL import Image,ImageFont, ImageDraw
 
-width=16
-height=35
+width=8
+height=18
+font_size=14
 
-font=ImageFont.truetype("Monaco",size=28)
+font=ImageFont.truetype("Monaco",size=font_size)
 
 def get_bytes(img,width,height):
     result=list()
@@ -26,6 +27,7 @@ lines=[f"WIDTH = {width}\n",
         "LAST = 127\n",
         "_FONT = \\\n"]
 #b'\x
+#for i in range(ord("p"),ord("v")):
 for i in range(32,128):
     img=Image.new("1",size=(width,height))
     draw = ImageDraw.Draw(img)
@@ -41,5 +43,5 @@ for i in range(32,128):
     
 lines.append('\n')
 lines.append("FONT = memoryview(_FONT)")
-with open("monaco28.py","w") as file:
+with open(f"src/fonts/monaco{font_size}.py","w") as file:
     file.writelines(lines)

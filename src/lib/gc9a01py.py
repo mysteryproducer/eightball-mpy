@@ -235,6 +235,7 @@ class GC9A01():
 
         if backlight is not None:
             backlight.value(1)
+        self.font_cache=dict()
 
     def _write(self, command=None, data=None):
         """SPI write to the device: commands and data."""
@@ -534,8 +535,10 @@ class GC9A01():
             if (font.FIRST <= ch < font.LAST
                     and x0+font.WIDTH <= self.width
                     and y0+font.HEIGHT <= self.height):
-                binout=char_bin.get(ch,None)
-                if binout is None:
+                binout=None
+                if ch in char_bin:
+                    binout=char_bin[ch]
+                else:
                     size=int(font.WIDTH * font.HEIGHT/8)
                     idx = (ch-font.FIRST)*size
                     binout=bytes()
