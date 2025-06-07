@@ -60,7 +60,7 @@ Weep {place}, weep {place} and {place}.
 [object.s]your veins
 
 [verb.i]have {verb.pt} 
-[verb.i]weeps
+[verb.i]weep
 [verb.pt]overturned
 [verb.pt]covered
 [verb.pt]troubled

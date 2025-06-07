@@ -527,6 +527,43 @@ class GC9A01():
         """
         self._write(GC9A01_VSCSAD, struct.pack(">H", vssa))
 
+    def _textn(self, font, text, x0, y0, color=WHITE, background=BLACK):
+        char_bin=dict()
+        for char in text:
+            ch = ord(char)
+            if (font.FIRST <= ch < font.LAST
+                    and x0+font.WIDTH <= self.width
+                    and y0+font.HEIGHT <= self.height):
+                binout=char_bin.get(ch,None)
+                if binout is None:
+                    size=int(font.WIDTH * font.HEIGHT/8)
+                    idx = (ch-font.FIRST)*size
+                    binout=bytes()
+                    for offset in range(0,size,2):
+                        in_byte=font.FONT[idx+offset]
+                        in_byte2=font.FONT[idx+offset+1]
+                        pixels=struct.pack('>16H',
+                            color if in_byte & _BIT7 else background,
+                            color if in_byte & _BIT6 else background,
+                            color if in_byte & _BIT5 else background,
+                            color if in_byte & _BIT4 else background,
+                            color if in_byte & _BIT3 else background,
+                            color if in_byte & _BIT2 else background,
+                            color if in_byte & _BIT1 else background,
+                            color if in_byte & _BIT0 else background,
+                            color if in_byte2 & _BIT7 else background,
+                            color if in_byte2 & _BIT6 else background,
+                            color if in_byte2 & _BIT5 else background,
+                            color if in_byte2 & _BIT4 else background,
+                            color if in_byte2 & _BIT3 else background,
+                            color if in_byte2 & _BIT2 else background,
+                            color if in_byte2 & _BIT1 else background,
+                            color if in_byte2 & _BIT0 else background)
+                        binout+=pixels
+                    char_bin[ch]=binout
+                self.blit_buffer(binout, x0, y0, font.WIDTH, font.HEIGHT)
+                x0+=font.WIDTH
+
     def _text8(self, font, text, x0, y0, color=WHITE, background=BLACK):
         """
         Internal method to write characters with width of 8 and
@@ -811,10 +848,12 @@ class GC9A01():
             color (int): 565 encoded color to use for characters
             background (int): 565 encoded color to use for background
         """
-        if font.WIDTH == 8:
+        if font.WIDTH == 8 and (font.HEIGHT==8 or font.HEIGHT==16):
             self._text8(font, text, x0, y0, color, background)
-        else:
+        elif font.WIDTH == 16 and (font.HEIGHT==16 or font.HEIGHT==32):
             self._text16(font, text, x0, y0, color, background)
+        else:
+            self._textn(font, text, x0, y0, color, background)
 
     def bitmap(self, bitmap, x, y, index=0):
         """

@@ -6,19 +6,26 @@
 
 #pre-loaded code above. 8 ball with gc9a01 and mpu6050 below
 import settings as cfg
-from time import sleep
-from machine import Timer, Pin
+import time
+from machine import Timer
 from accelerometer import Accelerometer
 from factory import create_generator
 from circular_screen import CircularScreen
 
 # Choose a font
-from fonts import vga2_16x32 as font_lrg
+from fonts import monaco28 as font_lrg
+#from fonts import vga2_16x32 as font_lrg
 from fonts import vga2_8x16 as font_sml
 
+last_gen=None
+
 def show(screen,generator,vector=None,g_load=None):
-    text=generator.generate()
-    screen.show(text,[font_lrg,font_sml])
+    global last_gen
+    this_loop=time.ticks_ms()
+    if (last_gen is None) or (time.ticks_diff(this_loop,last_gen)>cfg.TRIGGER_COOLDOWN):
+        text=generator.generate()
+        screen.show(text,[font_lrg,font_sml])
+        last_gen=time.ticks_ms()
 
 def main():
     generator=create_generator(cfg.GENERATOR)
@@ -35,7 +42,3 @@ def main():
     return (generator,screen,mpu6050,accelerometer_timer)
 
 all_state=main()
-
-#test_timer=Timer(1)
-#test_timer.init(period=2000,mode=Timer.PERIODIC,
-#                             callback=lambda t:print(all_state[2].vector.ixyz))

@@ -36,9 +36,7 @@ class CircularScreen:
         self.tft.fill(blue)
 
     def show(self,text,fonts):
-#    tft.blit_buffer(triangle.BITMAP,0,0,240,240)
         self.tft.fill(blue)
-#        print("paint blue")
         for font in fonts:
             layout=self.layout_text_circular(text,font.WIDTH,font.HEIGHT)
             if layout is None:

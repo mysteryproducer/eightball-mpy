@@ -19,5 +19,6 @@ GENERATOR="dsm5"
 # Shaking will record a higher G load
 TRIGGER_GS=1.3
 SLEEP_TIMEOUT_MS=30000
+TRIGGER_COOLDOWN=1000
 
 invert_predicate=lambda v: v[2] < -12000

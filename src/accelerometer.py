@@ -86,7 +86,7 @@ class Accelerometer:
                 else:
                     #check for timeout
                     duration=time.ticks_diff(time.ticks_ms(),self._invert_time)
-                    if (duration > cfg.SLEEP_TIMEOUT_MS):
+                    if (cfg.SLEEP_TIMEOUT_MS>0 and duration > cfg.SLEEP_TIMEOUT_MS):
                         #go to sleep
                         self._state |= Accelerometer.SLEEP
                         self._invoke_idle_cb(True)
