@@ -80,7 +80,17 @@ class CircularScreen:
         :param screen_diameter: Diameter of the circular screen in pixels.
         :return: A list of (x, y, line_text) tuples.
         """
-        words = text.split()
+        words = list(text.split())
+        i=0
+        while i < len(words):
+            word=words[i]
+            h_ix=word.find('-')
+            if h_ix>0:
+                to_insert=word[h_ix+1:]
+                words[i]=word[:h_ix+1]
+                words.insert(i+1,to_insert)
+            i+=1
+
         lines = []
         i = 0
         screen_diameter=self.tft.height-10
@@ -100,7 +110,8 @@ class CircularScreen:
 
             line = ""
             while word_index < len(words):
-                test_line = line + (" " if line else "") + words[word_index]
+                add_space = len(line)>0 and not line.endswith("-") 
+                test_line = line + (" " if add_space else "") + words[word_index]
                 if len(test_line) <= max_chars:
                     line = test_line
                     word_index += 1
@@ -129,4 +140,5 @@ class CircularScreen:
             for line in lines:
                 line[1]+=v_shift
         return lines
+
 
