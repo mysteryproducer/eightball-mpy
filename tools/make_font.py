@@ -1,10 +1,30 @@
 from PIL import Image,ImageFont, ImageDraw
+import argparse
 
 width=8
 height=18
 font_size=14
+font_face="Monaco"
 
-font=ImageFont.truetype("Monaco",size=font_size)
+def set_width(x):
+    width=x
+def set_height(x):
+    height=x
+def set_font(x):
+    font_face=x
+def set_size(x):
+    font_size=x
+
+description="This tool creates bitmap font code files for use in the gc9a01 library.\n"+\
+            "Fonts must be monospaced, and their width/height specified.\n"+\
+            "TODO: byte alignment! Does this work for 8x8,8x16,16x16,16x32?"
+args=argparse.ArgumentParser(description=description)
+args.add_argument("width",action=set_width)
+args.add_argument("height",action=set_height)
+args.add_argument("font-face",action=set_font)
+args.add_argument("font-size",action=set_size)
+
+font=ImageFont.truetype(font_face,size=font_size)
 
 def get_bytes(img,width,height):
     result=list()

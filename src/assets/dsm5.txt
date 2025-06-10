@@ -24,7 +24,6 @@
 [nd.loc]Frontotemporal
 [nd.loc]Vascular
 [nd.ind]Substance/Medication-Induced
-
 Intellectual Developmental Disorder
 Global Developmental Delay
 Language Disorder
