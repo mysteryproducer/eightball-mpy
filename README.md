@@ -1,6 +1,9 @@
 # The Indistinguishable-From-Magic 8 Ball
 The Indistinguishable-From-Magic 8 Ball is an open source project. Provided here are the code and some build directions. Or, more precisely...the code's here, and some directions and photographs are to come. 
 
+### Now in 2 flavours!
+I exhibited a few of these devices at the [2025 ELO Conference](https://elo2025.org) (big thanks to Joel Ong!). I found they were heavy on power demands and I've rewritten the code in C and C++. See [this GitHub repo](https://github.com/mysteryproducer/eightball-c) for the code. I've left these revised 8-balls switched on for about a week; I haven't run down one of the batteries yet.
+
 ### Current hardware:
 *  ESP32-S3 supermini
 *  Round TFT screen: 1.28" gc9a01  
